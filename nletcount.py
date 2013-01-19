@@ -53,6 +53,10 @@ def main():
   use = """Usage: python %prog [options] filename"""
   ver = "%prog 0.2"
   parser = OptionParser(usage=use, version=ver)
+  parser.add_option("-s", "--single-char-frequencies",
+                    action = "store_true",
+                    dest = "single",
+                    help = "Display single character frequencies")
   parser.add_option("-w", "--window-width",
                     default = 2,
                     type = "int",
@@ -77,12 +81,13 @@ def main():
     parser.error("incorrect number of arguments")
   filename = args[0]
 
-  scounts = nletcount(filename, 1)
-  pcounts = nletcount(filename, options.window_width)
-  # print single character frequencies
-  print "letter counts"
-  print "\n".join(map(repr, scounts))
+  if options.single:
+    # print single character frequencies
+    scounts = nletcount(filename, 1)
+    print "letter counts"
+    print "\n".join(map(repr, scounts))
 
+  pcounts = nletcount(filename, options.window_width)
   if options.filt:
     f_counts = countfilter(options.filt, pcounts, options.pos)
     if options.pos != None:
