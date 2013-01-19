@@ -68,8 +68,11 @@ def main():
                     help = "Require that the filt character specified with -f or --filter be at the pos'th position.")
   (options, args) = parser.parse_args()
 
-  if options.pos != None and not options.filt:
-    parser.error("-p or --pos can't be set without -f or --filter being specified")
+  if options.pos != None:
+    if not options.filt:
+      parser.error("-p or --pos can't be set without -f or --filter being specified")
+    elif options.pos >= options.window_width:
+      parser.error("|pos| must be less than window_width")
   if len(args) != 1:
     parser.error("incorrect number of arguments")
   filename = args[0]
