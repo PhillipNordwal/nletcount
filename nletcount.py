@@ -27,7 +27,7 @@ def nletcount(filename, window_width = 2):
   return sorted([(j,i) for (i,j) in counts.items()])
 
 def main():
-  use = """Usage: %prog [options] filename"""
+  use = """Usage: python %prog [options] filename"""
   ver = "%prog 0.1"
   parser = OptionParser(usage=use, version=ver)
   parser.add_option("-w", "--window-width",
