@@ -49,6 +49,13 @@ def countfilter(filt, counts, pos=None):
   else:
     return filter(lambda item: filt == item[1][pos], counts)
 
+def countprint(counts, printmessage, printarguments=None):
+  if printarguments:
+    print printmessage % printarguments
+  else:
+    print printmessage
+  print "\n".join(map(repr, counts))
+
 def main():
   use = """Usage: python %prog [options] filename"""
   ver = "%prog 0.2"
@@ -84,20 +91,17 @@ def main():
   if options.single:
     # print single character frequencies
     scounts = nletcount(filename, 1)
-    print "letter counts"
-    print "\n".join(map(repr, scounts))
+    countprint(scounts, "letter counts", None)
 
   pcounts = nletcount(filename, options.window_width)
   if options.filt:
     f_counts = countfilter(options.filt, pcounts, options.pos)
-    if options.pos != None:
-      print "pairs that contain %s" % options.filt
+    if options.pos == None:
+      countprint(f_counts, "nlets that contain %s", options.filt)
     else: # options.pos set
-      print "pairs that contain %s in the %s'th position" % (options.filt, options.pos)
-    print "\n".join(map(repr, f_counts))
+      countprint(f_counts, "nlets that contain %s in the %s'th position", (options.filt, options.pos))
   else: # options.filt not set
-    print "nlet counts of length %s" %options.window_width
-    print "\n".join(map(repr, pcounts))
+    countprint(pcounts, "nlet counts of length %s", options.window_width)
 
 
 if __name__ == "__main__":
