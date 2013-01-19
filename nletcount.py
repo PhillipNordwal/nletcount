@@ -52,6 +52,10 @@ def main():
     f_counts = filter(lambda x: options.filt.lower() in x[1], pcounts)
     print "pairs that contain %s" % options.filt
     print "\n".join(map(repr, f_counts))
+  else:
+    print "nlet counts of length %s" %options.window_width
+    print "\n".join(map(repr, pcounts))
+
 
 if __name__ == "__main__":
   exit(main())
