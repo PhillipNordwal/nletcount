@@ -11,10 +11,13 @@ Options:
   -h, --help            show this help message and exit
   -s, --single-char-frequencies
                         Display single character frequencies
-    -w WINDOW_WIDTH, --window-width=WINDOW_WIDTH
+  -g, --graph-display   Display graphs (requires matplotlib and numpy)
+  -n, --normalized      Display graphs normalized (-g or --graph-display must
+                        be set)
+  -w WINDOW_WIDTH, --window-width=WINDOW_WIDTH
                         Tally counts of window_width lengthed substrings.
   -f FILT, --filter=FILT
-                          Show only counts that contain filt.
-    -p POS, --pos=POS     Require that the filt character specified with -f or
-                          --filter be at the pos'th position.
+                        Show only counts that contain filt.
+  -p POS, --pos=POS     Require that the filt character specified with -f or
+                        --filter be at the pos'th position.
 ```
