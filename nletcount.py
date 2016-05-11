@@ -9,8 +9,10 @@ from sys import exit
 from optparse import OptionParser
 
 def window(seq, window_width=1):
-  "Returns a sliding window (of width window_width) over data from the iterable"
-  "   s -> (s0,s1,...s[window_width-1]), (s1,s2,...,swindow_width), ...        "
+  """Returns a sliding window (of width window_width) over data from the iterable
+     s -> (s0,s1,...,s[window_width-1]), (s1,s2,...,swindow_width), ...
+     
+     eg. window(itertools.count(), 3) returns ((0,1,2), (1,2,3), (2,3,4), ...)""""
   it = iter(seq)
   result = tuple(islice(it, window_width))
   if len(result) == window_width:
